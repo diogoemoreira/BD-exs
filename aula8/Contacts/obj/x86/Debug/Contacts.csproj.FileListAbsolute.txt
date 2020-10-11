@@ -1,0 +1,9 @@
+C:\Users\Diogo.DESKTOP-B6II5UN\OneDrive\Ambiente de Trabalho\ContactsC#\Contacts\bin\Debug\Contacts.exe
+C:\Users\Diogo.DESKTOP-B6II5UN\OneDrive\Ambiente de Trabalho\ContactsC#\Contacts\bin\Debug\Contacts.pdb
+C:\Users\Diogo.DESKTOP-B6II5UN\OneDrive\Ambiente de Trabalho\ContactsC#\Contacts\obj\x86\Debug\Contacts.Form1.resources
+C:\Users\Diogo.DESKTOP-B6II5UN\OneDrive\Ambiente de Trabalho\ContactsC#\Contacts\obj\x86\Debug\Contacts.Properties.Resources.resources
+C:\Users\Diogo.DESKTOP-B6II5UN\OneDrive\Ambiente de Trabalho\ContactsC#\Contacts\obj\x86\Debug\Contacts.csproj.GenerateResource.cache
+C:\Users\Diogo.DESKTOP-B6II5UN\OneDrive\Ambiente de Trabalho\ContactsC#\Contacts\obj\x86\Debug\Contacts.csproj.CoreCompileInputs.cache
+C:\Users\Diogo.DESKTOP-B6II5UN\OneDrive\Ambiente de Trabalho\ContactsC#\Contacts\obj\x86\Debug\Contacts.exe
+C:\Users\Diogo.DESKTOP-B6II5UN\OneDrive\Ambiente de Trabalho\ContactsC#\Contacts\obj\x86\Debug\Contacts.pdb
+C:\Users\Diogo.DESKTOP-B6II5UN\OneDrive\Ambiente de Trabalho\ContactsC#\Contacts\obj\x86\Debug\Contacts.csprojAssemblyReference.cache

@@ -1,0 +1,4 @@
+π Fname,Hours (
+	(σ Pname='Aveiro Digital' (project) ⨝ Pnumber=Pno (σ Hours>20 (works_on)))
+		⨝ Essn=Ssn (σ Dno=3 (employee))
+)

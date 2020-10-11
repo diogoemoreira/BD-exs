@@ -1,0 +1,3 @@
+π Ssn,Fname,Pname (
+(employee) ⨝ Ssn=Essn (works_on) ⨝ Pno=Pnumber (project)
+)

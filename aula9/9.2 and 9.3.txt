@@ -1,0 +1,23 @@
+9.2
+a)
+Alter table mytemp add primary key clustered(rid);
+b)
+Milliseconds used: 162077
+Fragmentation Percentage: 99.07%
+Page Index Occupation: 68.25%
+c)
+FILLFACTOR:90	Milliseconds used:580747
+FILLFACTOR:80	Milliseconds used:479220
+FILLFACTOR:65	Milliseconds used:451950
+d)
+Milliseconds used: 591870
+e)
+Apos adicionarmos os índices a todos os atributos o processo tornasse muito mais lento (>30mins).
+
+9.3
+a) create index IndxSsnEmployee on EMPLOYEE(SSN)
+b) create index IndxNameEmployee on EMPLOYEE(Fname,Lname)
+c) create index IndxDepEmployee on EMPLOYEE(Dno)
+d) create index IndxPnoProject on PROJECT(Pnumber)
+e) create index IndxEssnDependent on DEPEDENT(Essn)
+f) create index IndxPdepProject on PROJECT(Dnum)

@@ -1,0 +1,3 @@
+γ Pname ; sum(Hours)->THours (
+	(π Pname,Pnumber project) ⨝ Pnumber=Pno (π Pno,Hours (works_on))
+)

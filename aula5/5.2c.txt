@@ -1,0 +1,5 @@
+γ avg(Count_prod)->Avg_prod (
+	γ numero; count(codProd)->Count_prod (
+		encomenda ⨝ numero=numEnc (item)
+	)
+)

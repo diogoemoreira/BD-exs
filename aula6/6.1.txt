@@ -1,0 +1,108 @@
+a)
+SELECT * FROM dbo.authors;
+
+b)
+select au_fname,au_lname,phone from dbo.authors;
+
+c)
+select au_fname,au_lname,phone from dbo.authors order by au_fname,au_lname;
+
+d)
+select au_fname as first_name,au_lname as last_name,phone as telephone from dbo.authors order by au_fname,au_lname;
+
+e)
+select au_fname as first_name,au_lname as last_name,phone as telephone from dbo.authors where state='CA' and au_lname!='Ringer' order by au_fname,au_lname;
+
+f)
+select * from dbo.publishers where pub_name like '%Bo%';
+
+g)
+select dbo.publishers.pub_name from dbo.titles,dbo.publishers where type='business' and dbo.titles.pub_id=dbo.publishers.pub_id;
+
+h)
+select dbo.publishers.pub_id,dbo.publishers.pub_name,sum(dbo.sales.qty) as qty from dbo.publishers,dbo.titles,dbo.sales 
+where dbo.titles.title_id=dbo.sales.title_id and dbo.titles.pub_id=dbo.publishers.pub_id
+group by dbo.publishers.pub_id,dbo.publishers.pub_name;
+
+i)
+select dbo.titles.title,dbo.publishers.pub_name,sum(dbo.sales.qty) as quantity
+from dbo.publishers,dbo.titles,dbo.sales 
+where dbo.titles.title_id=dbo.sales.title_id and dbo.titles.pub_id=dbo.publishers.pub_id
+group by dbo.titles.title,dbo.publishers.pub_name;
+
+j)
+select dbo.titles.title,dbo.stores.stor_name as quantity
+from dbo.titles,dbo.sales,dbo.stores 
+where dbo.sales.stor_id=dbo.stores.stor_id and dbo.stores.stor_name='Bookbeat'
+
+k)
+select dbo.authors.au_fname, dbo.authors.au_lname
+from dbo.authors,dbo.titles,dbo.titleauthor
+where dbo.authors.au_id=dbo.titleauthor.au_id and dbo.titleauthor.title_id=dbo.titles.title_id
+group by dbo.authors.au_fname,dbo.authors.au_lname
+having count(dbo.titles.type)>1
+
+l)
+select dbo.titles.type,dbo.titles.pub_id,avg(dbo.titles.price) as avg_price,sum(dbo.sales.qty) as quantity
+from dbo.titles,dbo.sales
+where dbo.titles.title_id=dbo.sales.title_id
+group by dbo.titles.type,dbo.titles.pub_id;
+
+m)
+select dbo.titles.type,max(dbo.titles.advance) as advance, avg(advance) as avg_advance
+from dbo.titles
+group by dbo.titles.type
+having(max(advance))>1.5*avg(advance);
+
+n)
+select dbo.titles.title, dbo.authors.au_fname,
+dbo.titles.price*dbo.titles.royalty/100*dbo.titleauthor.royaltyper/100 as Valor_arrecadado
+from dbo.titles,dbo.authors,dbo.titleauthor
+where dbo.titles.title_id=dbo.titleauthor.title_id and dbo.authors.au_id=dbo.titleauthor.au_id
+group by dbo.titles.title,dbo.authors.au_fname,dbo.titles.price*dbo.titles.royalty/100*dbo.titleauthor.royaltyper/100;
+
+o)
+select dbo.titles.title,dbo.titles.ytd_sales,sum(dbo.titles.price*dbo.titles.ytd_sales) as facturacao,
+dbo.titles.price*dbo.titles.royalty/100*dbo.titles.ytd_sales as auths_revenue,
+sum(dbo.titles.price*dbo.titles.ytd_sales)-dbo.titles.price*dbo.titles.royalty/100*dbo.titles.ytd_sales as publisher_revenue
+from dbo.titles
+group by dbo.titles.title,dbo.titles.ytd_sales,dbo.titles.price,dbo.titles.royalty
+
+p)
+select dbo.titles.title,dbo.titles.ytd_sales,(dbo.authors.au_fname +' '+ dbo.authors.au_lname) as author,
+dbo.titles.price*dbo.titles.royalty/100*dbo.titles.ytd_sales as auths_revenue,
+sum(dbo.titles.price*dbo.titles.ytd_sales)-dbo.titles.price*dbo.titles.royalty/100*dbo.titles.ytd_sales as publisher_revenue
+from dbo.authors,dbo.titles,dbo.titleauthor
+where dbo.authors.au_id=dbo.titleauthor.au_id and dbo.titleauthor.title_id=dbo.titles.title_id
+group by dbo.titles.title,dbo.authors.au_fname,dbo.authors.au_lname,dbo.titles.ytd_sales,dbo.titles.price,dbo.titles.royalty
+
+q)
+select dbo.stores.stor_name, count(title) as n_titles
+from dbo.stores,dbo.sales,dbo.titles
+where dbo.stores.stor_id=dbo.sales.stor_id and dbo.sales.title_id=dbo.titles.title_id
+group by dbo.stores.stor_name
+having count(dbo.titles.title)=(select count(dbo.titles.title_id));
+
+r)
+select stor_name, sum(qty)
+from dbo.stores,dbo.sales,dbo.titles
+where dbo.stores.stor_id=dbo.sales.stor_id and dbo.sales.title_id=dbo.titles.title_id
+group by dbo.stores.stor_name
+having count(dbo.titles.title)=(select count(dbo.titles.title_id));
+
+s)
+(select distinct dbo.titles.title from titles)
+except
+(select distinct dbo.titles.title
+from dbo.titles,dbo.stores,dbo.sales
+where stor_name='Bookbeat' and dbo.titles.title_id=dbo.sales.title_id and dbo.sales.stor_id=dbo.stores.stor_id);
+
+t)
+(select dbo.publishers.pub_name,dbo.stores.stor_name
+from dbo.publishers,dbo.stores
+group by publishers.pub_name, dbo.stores.stor_name)
+except
+(select dbo.publishers.pub_name,dbo.stores.stor_name
+from dbo.publishers, dbo.titles, dbo.sales, dbo.stores
+where dbo.publishers.pub_id=dbo.titles.pub_id and dbo.titles.title_id=dbo.sales.title_id and dbo.sales.stor_id=dbo.stores.stor_id
+group by dbo.publishers.pub_name,dbo.stores.stor_name);

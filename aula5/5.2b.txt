@@ -1,0 +1,1 @@
+γ nome; avg(item.unidades)->Avg_unidades (encomenda ⨝ numero=numEnc (item) ⨝ codProd=codigo (produto))

@@ -1,0 +1,5 @@
+σ NDependents=0 (
+	γ Fname; count(Essn)->NDependents (
+		employee ⨝ Ssn=Mgr_ssn (department) ⟗ Ssn=Essn (dependent)
+	)
+)

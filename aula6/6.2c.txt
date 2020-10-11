@@ -1,0 +1,77 @@
+5.1
+a)
+select distinct SSN,Fname,Minit,Lname
+from Company.Employee,Company.Works_on,Company.Project
+where ssn=Essn
+
+b)
+select distinct E.Fname,E.Minit,E.Lname
+from (Company.Employee as E join Company.Employee as S on E.Super_ssn=S.ssn)
+where S.Fname='Carlos' and S.Minit='D' and S.Lname='Gomes'
+
+c)
+select Pname,sum(CW_Hours) as THours
+from (Company.Project join Company.works_on on Pnumber=Pno)
+group by Pname
+
+d)
+select Fname,CW_Hours
+from ((Company.project join Company.works_on on Pnumber=Pno) join Company.Employee on Essn=SSn)
+where CW_Hours>20 and Dno=3
+
+e)
+select Fname
+from (Company.Employee left outer join Company.works_on on SSN=Essn)
+where Pno is null
+
+f)
+select Dname,avg(Salary) as avg_Salary
+from (Company.Department join Company.Employee on Dnumber=Dno)
+where Sex='F'
+group by Dname
+
+g)
+select Fname,count(Essn) as NDependents
+from (Company.Employee join Company.Dependent_ on SSN=Essn)
+group by Fname
+having count(Essn)>2
+
+h)
+select Fname,count(Essn) as NDependents
+from ((Company.Employee join Company.Department on SSN=Mgr_ssn) full outer join Company.Dependent_ on SSN=ESSN)
+group by Fname
+having count(Essn)=0
+
+i)
+select distinct Fname
+from ((Company.Dept_locations join Company.employee on Dnumber=Dno and Dlocation!='Aveiro')
+	join Company.works_on on Ssn=Essn join Company.Project on Pno=Pnumber)
+
+5.2
+a)
+select fornecedor.nome
+from (StockEncomendas.Fornecedor left outer join StockEncomendas.Encomenda on nif=Fornecedor)
+where numero is null
+
+b)
+select nome,avg(item.unidades) as avg_unidades
+from ((StockEncomendas.Encomenda join StockEncomendas.item on numero=numEnc) join StockEncomendas.produto on codProd=codigo)
+group by nome
+
+c)
+select avg(Count_prod+0.0) as avg_prod
+from (
+	select numero,count(CodProd) as Count_prod
+	from StockEncomendas.encomenda,StockEncomendas.item
+	where numero=numEnc
+	group by numero) as numero
+
+d)
+select fornecedor.nome as fornecedor_nome,produto.nome as produto_nome, SUM(item.unidades) as Unidades
+from (StockEncomendas.fornecedor join (
+		StockEncomendas.Encomenda join (
+			StockEncomendas.item join StockEncomendas.produto on codProd=codigo) 
+		on numero=numEnc) 
+	on nif=fornecedor)
+group by fornecedor.nome,produto.nome
+order by fornecedor.nome

@@ -1,0 +1,3 @@
+γ fornecedor.nome,produto.nome; sum(item.unidades)->Unidades (
+	fornecedor ⨝nif=fornecedor (encomenda ⨝numero=numEnc (item ⨝ codProd=codigo (produto)))
+)

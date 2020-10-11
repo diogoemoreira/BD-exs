@@ -1,0 +1,3 @@
+π Fname (
+	σ Pno=null (employee ⟗ Ssn=Essn (works_on))
+)

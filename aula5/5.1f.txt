@@ -1,0 +1,3 @@
+γ Dname; avg(Salary)->Avg_Salary (
+	department ⨝ Dnumber=Dno (σ Sex='F' employee)
+)
